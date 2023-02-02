@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:workflow_managerment/src/screen/home_page.dart';
+import 'package:workflow_managerment/src/screen/schedule_page.dart';
 
 class BottomBar extends StatefulWidget {
   const BottomBar({super.key});
@@ -10,10 +12,11 @@ class BottomBar extends StatefulWidget {
 class _BottomBar extends State<BottomBar> {
   int _selectOptionPage = 0;
   static final List<Widget> _pageOptions = <Widget>[
-    const Text("a"),
-    const Text("b"),
+    const HomePage(),
+    const SchedulePage(),
     const Text("c")
   ];
+  // ignore: non_constant_identifier_names
   void _SelectOptionPage(int value) {
     setState(() {
       _selectOptionPage = value;
@@ -24,23 +27,25 @@ class _BottomBar extends State<BottomBar> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: const Color.fromARGB(255, 7, 143, 255),
+          backgroundColor: const Color.fromARGB(255, 26, 0, 142),
           title: const Center(
             child: Text("Home Page"),
           )),
-      body: Center(
+      body: Container(
         child: _pageOptions[_selectOptionPage],
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(icon: Icon(Icons.menu), label: "Menu"),
-          BottomNavigationBarItem(icon: Icon(Icons.schedule), label: "Schedule")
+          BottomNavigationBarItem(
+              icon: Icon(Icons.schedule), label: "Schedule"),
+          BottomNavigationBarItem(icon: Icon(Icons.group), label: "Team")
         ],
         elevation: 14,
+        type: BottomNavigationBarType.fixed,
         unselectedItemColor: Colors.white,
-        selectedItemColor: const Color.fromARGB(255, 0, 0, 0),
-        backgroundColor: const Color.fromARGB(255, 7, 143, 255),
+        selectedItemColor: Color.fromARGB(255, 238, 226, 0),
+        backgroundColor: const Color.fromARGB(255, 26, 0, 142),
         showSelectedLabels: false,
         onTap: _SelectOptionPage,
         currentIndex: _selectOptionPage,
